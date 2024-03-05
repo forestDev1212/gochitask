@@ -37,8 +37,8 @@
   **Get Quote** (positive int)
 
   ```
-  # GET /quotes/:id
-  curl -i -X GET http://127.0.0.1:3000/api/quotes/1
+  # GET /task/:id
+  curl -i -X GET http://127.0.0.1:3000/api/task/1
   ```
 
   **Response**
@@ -50,23 +50,25 @@
   Content-Length: 158
 
   {
+    "code": 200,
+    "message": "success",
     "data": {
-      "id": 1,
-      "content": "My first quote",
-      "author_id": 1,
-      "category_id": 1,
-      "created_at": "2023-12-29T13:53:57.33503Z",
-      "updated_at": "2023-12-29T13:53:57.33503Z"
-      }
+        "id": 5,
+        "title": "134",
+        "priority": 123,
+        "date": "2006-01-02T15:04:05Z",
+        "created_at": "2024-03-04T14:56:10.187845Z",
+        "updated_at": "2024-03-04T14:56:10.187845Z"
     }
+}
 
   ```
 
   **List Quotes**
 
   ```
-  # GET /quotes/:id (positive int)
-  curl -i -X GET http://127.0.0.1:3000/api/quotes
+  # GET /tasks/:id (positive int)
+  curl -i -X GET http://127.0.0.1:3000/api/tasks
   ```
 
   **Response**
@@ -77,89 +79,104 @@
   Content-Length: 569
 
   {
+    "code": 200,
+    "message": "success",
     "data": [
-      {
-        "id": 1,
-        "content": "My first quote",
-        "author_id": 1,
-        "category_id": 1,
-        "created_at": "2023-12-29T13:53:57.33503Z",
-        "updated_at": "2023-12-29T13:53:57.33503Z"
-      },
-      {
-        "id": 2,
-        "content": "My second quote",
-        "author_id": 2,
-        "category_id": 2,
-        "created_at": "2023-12-29T13:53:57.33503Z",
-        "updated_at": "2023-12-29T13:53:57.33503Z"
-      },
-      {
-        "id": 3,
-        "content": "My third quote",
-        "author_id": 3,
-        "category_id": 3,
-        "created_at": "2023-12-29T13:53:57.33503Z",
-        "updated_at": "2023-12-29T13:53:57.33503Z"
-      }
+        {
+            "id": 3,
+            "title": "123",
+            "priority": 123,
+            "date": "2006-01-02T15:04:05Z",
+            "created_at": "2024-03-04T14:50:49.11049Z",
+            "updated_at": "2024-03-04T14:50:49.11049Z"
+        },
+        {
+            "id": 4,
+            "title": "123",
+            "priority": 123,
+            "date": "2006-01-02T15:04:05Z",
+            "created_at": "2024-03-04T14:53:01.347691Z",
+            "updated_at": "2024-03-04T14:53:01.347691Z"
+        },
+        {
+            "id": 5,
+            "title": "134",
+            "priority": 123,
+            "date": "2006-01-02T15:04:05Z",
+            "created_at": "2024-03-04T14:56:10.187845Z",
+            "updated_at": "2024-03-04T14:56:10.187845Z"
+        },
+        {
+            "id": 6,
+            "title": "123",
+            "priority": 123,
+            "date": "2006-01-02T15:04:05Z",
+            "created_at": "2024-03-04T14:57:33.840414Z",
+            "updated_at": "2024-03-04T14:57:33.840414Z"
+        },
+        {
+            "id": 7,
+            "title": "123",
+            "priority": 123,
+            "date": "2006-01-02T15:04:05Z",
+            "created_at": "2024-03-04T14:58:37.653845Z",
+            "updated_at": "2024-03-04T14:58:37.653845Z"
+        }
     ],
-    "length": 3,
+    "length": 5,
     "paginate": {
-      "offset": 0,
-      "limit": 10,
-      "total": 3,
-      "prev": 0,
-      "next": 3,
-      "has_next": false,
-      "has_prev": false
+        "offset": 0,
+        "limit": 10,
+        "total": 5,
+        "prev": 0,
+        "next": 5,
+        "has_next": true,
+        "has_prev": false
     }
-  }
+}
   ```
 
-  **Create Quote**
+  **Create Task**
 
   ```
   curl -v -XPOST -H "Content-type: application/json" \
-  -d '{"author_id": 1, "content": "Hello World!", "category_id": 1 }' \
+  -d {
+    "id" : 5,
+    "title" : "123",
+    "priority" : 134,
+    "date" : "2006-01-02T15:04:05Z"
+} \
   '127.0.0.1:3000/api/quotes'
 
   ```
 
   **Response**
 
-  ```
-  Trying 127.0.0.1:3000...*
-  Connected to 127.0.0.1 (127.0.0.1) port 3000
-  > POST /api/quotes HTTP/1.1
-  > Host: 127.0.0.1:3000
-  > User-Agent: curl/8.4.0
-  > Accept: */*
-  > Content-type: application/json
-  > Content-Length: 76
-
-  < HTTP/1.1 201 Created
-  < Content-Type: application/json; charset=UTF-8
-  < Date: Fri, 29 Dec 2023 14:14:25 GMT
-  < Content-Length: 158
-  <* Connection #0 to host 127.0.0.1 left intact
-
   {
-  	"data": {
-  		"id":4,
-  		"content":"Hello World!",
-  		"author_id":1,
-  		"category_id":1,
-  		"created_at":"2023-12-29T14:14:25.889183Z",
-  		"updated_at":"2023-12-29T14:14:25.889183Z"
-  	}
-  }
+    "code": 200,
+    "message": "success",
+    "data": {
+        "id": 8,
+        "title": "134",
+        "priority": 123,
+        "date": "2006-01-02T15:04:05Z",
+        "created_at": "2024-03-04T15:57:14.314585Z",
+        "updated_at": "2024-03-04T15:57:14.314585Z"
+    }
+}
+
   ```
 
-  **Update Quote** (id: positive int)
+  **Task Quote** (id: positive int)
 
   ```
   curl -v -XPUT -H "Content-type: application/json" \
-  -d '{"author_id": 1, "content": "Test!", "category_id": 1 }'\  	'127.0.0.1:3000/api/quotes/4'
+  -d '{
+    "id" : 7,
+    "title" : "123",
+    "priority" : 134,
+    "date" : "2006-01-02T15:04:05Z"
+}'\  	'127.0.0.1:3000/api/quotes/4'
   ```
 
   **Response**
@@ -180,22 +197,24 @@
   < Content-Length: 151
   <* Connection #0 to host 127.0.0.1 left intact
 
-  {
-  	"data": {
-  		"id":4,
-  		"content":"Test!",
-  		"author_id":1,
-  		"category_id":1,
-  		"created_at":"2023-12-29T14:14:25.889183Z",
-  		"updated_at":"2023-12-29T14:14:25.889183Z"
-  	}
-  }
+ {
+    "code": 200,
+    "message": "success",
+    "data": {
+        "id": 7,
+        "title": "134",
+        "priority": 123,
+        "date": "2006-01-02T15:04:05Z",
+        "created_at": "2024-03-04T14:58:37.653845Z",
+        "updated_at": "2024-03-04T14:58:37.653845Z"
+    }
+}
   ```
 
-  **Delete Quote**
+  **Delete Task**
 
   ```
-  curl -v -XDELETE '127.0.0.1:3000/api/quotes/4'
+  curl -v -XDELETE '127.0.0.1:3000/api/tasks/4'
   ```
 
   **Response**
