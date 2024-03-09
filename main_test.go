@@ -18,7 +18,7 @@ func TestInitServer(t *testing.T) {
 	defer cancel()
 
 	interruptCh := make(chan os.Signal, 1)
-	signal.Notify(interruptCh, os.interrupt)
+	signal.Notify(interruptCh, os.Interrupt)
 
 	go func() {
 		main()
